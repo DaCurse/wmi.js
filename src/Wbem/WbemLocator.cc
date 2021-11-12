@@ -10,15 +10,12 @@ constexpr IWbemContext *DEFAULT_WBEM_CONTEXT = NULL;
 constexpr BSTR DEFAULT_PRINCIPAL_NAME = NULL;
 constexpr RPC_AUTH_IDENTITY_HANDLE CURRENT_PROXY_IDENTITY = NULL;
 
-using WmiJS::WbemLocator;
-using WmiJS::WbemServices;
-
-WbemLocator::WbemLocator(IWbemLocator *wbemLocator)
+WmiJS::WbemLocator::WbemLocator(IWbemLocator *wbemLocator)
     : mWbemLocator(wbemLocator)
 {
 }
 
-WbemLocator::~WbemLocator()
+WmiJS::WbemLocator::~WbemLocator()
 {
   if (nullptr != mWbemLocator)
   {
@@ -27,7 +24,7 @@ WbemLocator::~WbemLocator()
   mWbemLocator = nullptr;
 }
 
-WbemServices WbemLocator::connect(const _bstr_t &&wmiNamespace)
+WmiJS::WbemServices WmiJS::WbemLocator::connect(const _bstr_t &&wmiNamespace)
 {
   IWbemServices *wbemServices = nullptr;
 
@@ -64,7 +61,7 @@ WbemServices WbemLocator::connect(const _bstr_t &&wmiNamespace)
   return WbemServices(wbemServices);
 }
 
-WbemServices WbemLocator::connect(const std::string &wmiNamespace)
+WmiJS::WbemServices WmiJS::WbemLocator::connect(const std::string &wmiNamespace)
 {
   return connect(std::move(_bstr_t(wmiNamespace.data())));
 }

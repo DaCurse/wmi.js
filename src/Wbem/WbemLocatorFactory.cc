@@ -2,12 +2,13 @@
 
 #include <Wbemidl.h>
 
+#pragma comment(lib, "wbemuuid.lib")
+
 constexpr LPUNKNOWN NOT_PART_OF_AGGREGATE = NULL;
 
 using WmiJS::WbemLocatorFactory;
-using WmiJS::WbemLocator;
 
-WbemLocator WbemLocatorFactory::createWbemLocator()
+WmiJS::WbemLocator WbemLocatorFactory::createWbemLocator()
 {
   IWbemLocator *wbemLocator = nullptr;
 
@@ -16,7 +17,7 @@ WbemLocator WbemLocatorFactory::createWbemLocator()
       NOT_PART_OF_AGGREGATE,
       CLSCTX_INPROC_SERVER,
       IID_IWbemLocator,
-      (LPVOID *)wbemLocator);
+      (LPVOID *)&wbemLocator);
 
   if (FAILED(hres))
   {
