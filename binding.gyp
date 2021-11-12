@@ -4,13 +4,9 @@
             "target_name": "wmijs",
             "sources": [
                 "src/Wbem/Wbem.cc",
-                "src/Wbem/Wbem.h",
                 "src/Wbem/WbemLocator.cc",
-                "src/Wbem/WbemLocator.h",
                 "src/Wbem/WbemLocatorFactory.cc",
-                "src/Wbem/WbemLocatorFactory.h",
                 "src/Wbem/WbemServices.cc",
-                "src/Wbem/WbemServices.h",
                 "src/WmiJS.cc",
             ],
         }
