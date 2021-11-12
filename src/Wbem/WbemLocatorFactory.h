@@ -6,6 +6,7 @@ namespace WmiJS
 {
   class WbemLocatorFactory
   {
+  public:
     explicit WbemLocatorFactory() = default;
     WbemLocator createWbemLocator();
   };
