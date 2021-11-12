@@ -1,0 +1,11 @@
+{
+  "name": "wmi.js",
+  "version": "0.0.1",
+  "description": "Native WMI querying",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DaCurse",
+  "license": "MIT"
+}
