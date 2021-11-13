@@ -18,10 +18,10 @@ namespace WmiJS
     explicit WbemLocator(IWbemLocator *wbemLocator);
     ~WbemLocator();
 
-    WbemServices connect(const std::string &wmiNamespace);
+    [[nodiscard]] WbemServices connect(const std::string &wmiNamespace);
 
   private:
-    WbemServices connect(const _bstr_t &&wmiNamespace);
+    [[nodiscard]] WbemServices connect(const _bstr_t &&wmiNamespace);
   };
 
 }

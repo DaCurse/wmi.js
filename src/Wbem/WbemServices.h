@@ -1,6 +1,10 @@
 #pragma once
 
+#include "WbemQueryResultEnumerator.h"
+
+#include <string>
 #include <Wbemidl.h>
+#include <comutil.h>
 
 namespace WmiJS
 {
@@ -13,5 +17,10 @@ namespace WmiJS
     explicit WbemServices() = delete;
     explicit WbemServices(IWbemServices *wbemServices);
     ~WbemServices();
+
+    [[nodiscard]] WbemQueryResultEnumerator query(const std::string& queryRequest);
+
+  private: 
+    [[nodiscard]] WbemQueryResultEnumerator query(const bstr_t&& queryRequest);
   };
 }

@@ -7,6 +7,8 @@
                 "src/Wbem/WbemLocator.cc",
                 "src/Wbem/WbemLocatorFactory.cc",
                 "src/Wbem/WbemServices.cc",
+                "src/Wbem/WbemQueryResultEnumerator.cc",
+                "src/Wbem/WbemQueryResultObject.cc",
                 "src/WmiJS.cc",
             ],
         }

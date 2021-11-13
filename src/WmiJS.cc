@@ -23,5 +23,4 @@ namespace WmiJS
     v8::Isolate *isolate = context->GetIsolate();
     node::AddEnvironmentCleanupHook(isolate, uninitialize, nullptr);
   }
-
 }
