@@ -1,27 +1,23 @@
 #pragma once
 
-#include <node.h>
-#include "napi.h"
+#include <napi.h>
 
 #include "Wbem/Wbem.h"
 
 namespace WmiJS
 {
-  static void initialize()
-  {
-    Wbem::initialize();
-  }
-
-  static void uninitialize(void *)
+  static void uninitialize()
   {
     Wbem::uninitialize();
   }
 
-  NODE_MODULE_INIT()
+  Napi::Object initialize(Napi::Env env, Napi::Object exports)
   {
-    initialize();
+    env.AddCleanupHook(uninitialize);
+    Wbem::initialize();
 
-    v8::Isolate *isolate = context->GetIsolate();
-    node::AddEnvironmentCleanupHook(isolate, uninitialize, nullptr);
+    return exports;
   }
+
+  NODE_API_MODULE(NODE_GYP_MODULE_NAME, initialize)
 }
