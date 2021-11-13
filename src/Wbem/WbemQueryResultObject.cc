@@ -1,21 +1,21 @@
 #include "WbemQueryResultObject.h"
 
-WmiJS::WbemQueryResultObject::WbemQueryResultObject(IWbemClassObject* queryResult)
+WmiJS::WbemQueryResultObject::WbemQueryResultObject(IWbemClassObject *queryResult)
     : mQueryResult(queryResult)
 {
-
 }
 
-WmiJS::WbemQueryResultObject::~WbemQueryResultObject() {
-    if(nullptr != mQueryResult)
-    {
-        mQueryResult->Release();
-    }
-
-    mQueryResult = nullptr;
-}
-
-bool WmiJS::WbemQueryResultObject::operator==(const WbemQueryResultObject& rhs) const
+WmiJS::WbemQueryResultObject::~WbemQueryResultObject()
 {
-    return mQueryResult == rhs.mQueryResult;
+  if (nullptr != mQueryResult)
+  {
+    mQueryResult->Release();
+  }
+
+  mQueryResult = nullptr;
+}
+
+bool WmiJS::WbemQueryResultObject::operator==(const WbemQueryResultObject &rhs) const
+{
+  return mQueryResult == rhs.mQueryResult;
 }

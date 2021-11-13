@@ -19,21 +19,21 @@ WbemServices::~WbemServices()
   mWbemServices = nullptr;
 }
 
-WmiJS::WbemQueryResultEnumerator  WbemServices::query(const std::string& queryRequest)
+WmiJS::WbemQueryResultEnumerator WbemServices::query(const std::string &queryRequest)
 {
   return query(std::move(bstr_t(queryRequest.data())));
 }
 
-WmiJS::WbemQueryResultEnumerator WbemServices::query(const bstr_t&& queryRequest)
+WmiJS::WbemQueryResultEnumerator WbemServices::query(const bstr_t &&queryRequest)
 {
-  IEnumWbemClassObject* queryResultEnumrator = nullptr;
-    HRESULT hres = mWbemServices->ExecQuery(
-        QUERY_LANGUAGE_WQL, 
-        queryRequest,
-        WBEM_FLAG_FORWARD_ONLY | WBEM_FLAG_RETURN_IMMEDIATELY, 
-        DEFAULT_CONTEXT,
-        &queryResultEnumrator);
-    
+  IEnumWbemClassObject *queryResultEnumrator = nullptr;
+  HRESULT hres = mWbemServices->ExecQuery(
+      QUERY_LANGUAGE_WQL,
+      queryRequest,
+      WBEM_FLAG_FORWARD_ONLY | WBEM_FLAG_RETURN_IMMEDIATELY,
+      DEFAULT_CONTEXT,
+      &queryResultEnumrator);
+
   if (FAILED(hres))
   {
     throw 0 /* TODO: add exception */;

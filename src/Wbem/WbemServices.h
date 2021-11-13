@@ -18,9 +18,9 @@ namespace WmiJS
     explicit WbemServices(IWbemServices *wbemServices);
     ~WbemServices();
 
-    [[nodiscard]] WbemQueryResultEnumerator query(const std::string& queryRequest);
+    [[nodiscard]] WbemQueryResultEnumerator query(const std::string &queryRequest);
 
-  private: 
-    [[nodiscard]] WbemQueryResultEnumerator query(const bstr_t&& queryRequest);
+  private:
+    [[nodiscard]] WbemQueryResultEnumerator query(const bstr_t &&queryRequest);
   };
 }

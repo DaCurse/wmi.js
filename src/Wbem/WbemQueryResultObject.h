@@ -4,16 +4,16 @@
 
 namespace WmiJS
 {
-    class WbemQueryResultObject
-    {
-        private:
-            IWbemClassObject* mQueryResult;
+  class WbemQueryResultObject
+  {
+  private:
+    IWbemClassObject *mQueryResult;
 
-        public:
-            explicit WbemQueryResultObject() = delete;
-            explicit WbemQueryResultObject(IWbemClassObject* queryResult);
-            ~WbemQueryResultObject();
+  public:
+    explicit WbemQueryResultObject() = delete;
+    explicit WbemQueryResultObject(IWbemClassObject *queryResult);
+    ~WbemQueryResultObject();
 
-            [[nodiscard]] bool operator==(const WbemQueryResultObject& rhs) const;
-    };
-} 
+    [[nodiscard]] bool operator==(const WbemQueryResultObject &rhs) const;
+  };
+}
