@@ -1,6 +1,7 @@
 #pragma once
 
 #include <node.h>
+#include "napi.h"
 
 #include "Wbem/Wbem.h"
 
