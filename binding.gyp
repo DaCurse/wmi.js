@@ -4,11 +4,11 @@
             "target_name": "wmijs",
             "sources": [
                 "src/Wbem/Wbem.cc",
-                "src/Wbem/WbemLocator.cc",
-                "src/Wbem/WbemLocatorFactory.cc",
-                "src/Wbem/WbemServices.cc",
-                "src/Wbem/WbemQueryResultEnumerator.cc",
-                "src/Wbem/WbemQueryResultObject.cc",
+                "src/Wbem/Locator.cc",
+                "src/Wbem/LocatorFactory.cc",
+                "src/Wbem/Services.cc",
+                "src/Wbem/QueryResultEnumerator.cc",
+                "src/Wbem/QueryResultObject.cc",
                 "src/WmiJS.cc",
             ],
             "include_dirs": ["<!(node -p \"require('node-addon-api').include_dir\")"],
@@ -24,6 +24,11 @@
                             "ExceptionHandling": 1
                         },
                     },
+                    "msbuild_settings": {
+                        "ClCompile": {
+                            "LanguageStandard": "stdcpp20"
+                        }
+                    }
                 }],
                 ["OS=='mac'", {
                     "xcode_settings": {

@@ -1,10 +1,7 @@
 #pragma once
 
-namespace WmiJS
+namespace WmiJS::Wbem
 {
-  namespace Wbem // TODO: Change to nested namespace
-  {
-    void initialize();
-    void uninitialize();
-  }
+  void initialize();
+  void uninitialize();
 }

@@ -1,4 +1,4 @@
-#include "WbemLocatorFactory.h"
+#include "LocatorFactory.h"
 
 #include <Wbemidl.h>
 
@@ -6,9 +6,9 @@
 
 constexpr LPUNKNOWN NOT_PART_OF_AGGREGATE = NULL;
 
-using WmiJS::WbemLocatorFactory;
+using namespace WmiJS::Wbem;
 
-WmiJS::WbemLocator WbemLocatorFactory::createWbemLocator()
+Locator LocatorFactory::createWbemLocator()
 {
   IWbemLocator *wbemLocator = nullptr;
 
@@ -24,5 +24,5 @@ WmiJS::WbemLocator WbemLocatorFactory::createWbemLocator()
     throw 0 /* TODO: add exception */;
   }
 
-  return WbemLocator(wbemLocator);
+  return Locator(wbemLocator);
 }

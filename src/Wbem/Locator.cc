@@ -1,4 +1,4 @@
-#include "WbemLocator.h"
+#include "Locator.h"
 
 constexpr BSTR CURRENT_USER_NAME = NULL;
 constexpr BSTR CURRENT_USER_PASSWORD = NULL;
@@ -10,12 +10,14 @@ constexpr IWbemContext *DEFAULT_WBEM_CONTEXT = NULL;
 constexpr BSTR DEFAULT_PRINCIPAL_NAME = NULL;
 constexpr RPC_AUTH_IDENTITY_HANDLE CURRENT_PROXY_IDENTITY = NULL;
 
-WmiJS::WbemLocator::WbemLocator(IWbemLocator *wbemLocator)
+using namespace WmiJS::Wbem;
+
+Locator::Locator(IWbemLocator *wbemLocator)
     : mWbemLocator(wbemLocator)
 {
 }
 
-WmiJS::WbemLocator::~WbemLocator()
+Locator::~Locator()
 {
   if (nullptr != mWbemLocator)
   {
@@ -24,7 +26,7 @@ WmiJS::WbemLocator::~WbemLocator()
   mWbemLocator = nullptr;
 }
 
-WmiJS::WbemServices WmiJS::WbemLocator::connect(const _bstr_t &&wmiNamespace)
+Services Locator::connect(const _bstr_t &&wmiNamespace)
 {
   IWbemServices *wbemServices = nullptr;
 
@@ -58,10 +60,10 @@ WmiJS::WbemServices WmiJS::WbemLocator::connect(const _bstr_t &&wmiNamespace)
     throw 0 /* TODO: add exception */;
   }
 
-  return WbemServices(wbemServices);
+  return Services(wbemServices);
 }
 
-WmiJS::WbemServices WmiJS::WbemLocator::connect(const std::string &wmiNamespace)
+Services Locator::connect(const std::string &wmiNamespace)
 {
   return connect(std::move(_bstr_t(wmiNamespace.data())));
 }

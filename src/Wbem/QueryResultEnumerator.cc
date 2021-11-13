@@ -1,13 +1,15 @@
-#include "WbemQueryResultEnumerator.h"
+#include "QueryResultEnumerator.h"
 
-static const WmiJS::WbemQueryResultObject NULL_QUERY_RESULT = WmiJS::WbemQueryResultObject(nullptr);
+using namespace WmiJS::Wbem;
 
-WmiJS::WbemQueryResultEnumerator::WbemQueryResultEnumerator(IEnumWbemClassObject *queryResultEnumerator)
+static const QueryResultObject NULL_QUERY_RESULT = QueryResultObject(nullptr);
+
+QueryResultEnumerator::QueryResultEnumerator(IEnumWbemClassObject *queryResultEnumerator)
     : mQueryResultEnumerator(queryResultEnumerator), mNextQueryResultObject(getNextQueryResult())
 {
 }
 
-WmiJS::WbemQueryResultEnumerator::~WbemQueryResultEnumerator()
+QueryResultEnumerator::~QueryResultEnumerator()
 {
   if (nullptr != mQueryResultEnumerator)
   {
@@ -16,25 +18,25 @@ WmiJS::WbemQueryResultEnumerator::~WbemQueryResultEnumerator()
   mQueryResultEnumerator = nullptr;
 }
 
-WmiJS::WbemQueryResultObject WmiJS::WbemQueryResultEnumerator::next()
+QueryResultObject QueryResultEnumerator::next()
 {
   if (hasEnded())
   {
     throw 0 /* TODO: add exception */;
   }
 
-  WmiJS::WbemQueryResultObject returnValue = mNextQueryResultObject;
+  QueryResultObject returnValue = mNextQueryResultObject;
   mNextQueryResultObject = getNextQueryResult();
 
   return returnValue;
 }
 
-bool WmiJS::WbemQueryResultEnumerator::hasEnded() const
+bool QueryResultEnumerator::hasEnded() const
 {
   return NULL_QUERY_RESULT == mNextQueryResultObject;
 }
 
-WmiJS::WbemQueryResultObject WmiJS::WbemQueryResultEnumerator::getNextQueryResult()
+QueryResultObject QueryResultEnumerator::getNextQueryResult()
 {
   IWbemClassObject *queryResultObject = nullptr;
   ULONG returnCount = 0;
@@ -52,8 +54,8 @@ WmiJS::WbemQueryResultObject WmiJS::WbemQueryResultEnumerator::getNextQueryResul
 
   if (0 == returnCount)
   {
-    return WmiJS::WbemQueryResultObject(nullptr);
+    return QueryResultObject(nullptr);
   }
 
-  return WmiJS::WbemQueryResultObject(queryResultObject);
+  return QueryResultObject(queryResultObject);
 }

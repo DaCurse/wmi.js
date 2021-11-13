@@ -1,16 +1,16 @@
-#include "WbemServices.h"
+#include "Services.h"
 
 static const bstr_t QUERY_LANGUAGE_WQL = bstr_t("WQL");
 constexpr IWbemContext *DEFAULT_CONTEXT = NULL;
 
-using WmiJS::WbemServices;
+using namespace WmiJS::Wbem;
 
-WbemServices::WbemServices(IWbemServices *wbemServices)
+Services::Services(IWbemServices *wbemServices)
     : mWbemServices(wbemServices)
 {
 }
 
-WbemServices::~WbemServices()
+Services::~Services()
 {
   if (nullptr != mWbemServices)
   {
@@ -19,12 +19,12 @@ WbemServices::~WbemServices()
   mWbemServices = nullptr;
 }
 
-WmiJS::WbemQueryResultEnumerator WbemServices::query(const std::string &queryRequest)
+QueryResultEnumerator Services::query(const std::string &queryRequest)
 {
   return query(std::move(bstr_t(queryRequest.data())));
 }
 
-WmiJS::WbemQueryResultEnumerator WbemServices::query(const bstr_t &&queryRequest)
+QueryResultEnumerator Services::query(const bstr_t &&queryRequest)
 {
   IEnumWbemClassObject *queryResultEnumrator = nullptr;
   HRESULT hres = mWbemServices->ExecQuery(
@@ -39,5 +39,5 @@ WmiJS::WbemQueryResultEnumerator WbemServices::query(const bstr_t &&queryRequest
     throw 0 /* TODO: add exception */;
   }
 
-  return WbemQueryResultEnumerator(queryResultEnumrator);
+  return QueryResultEnumerator(queryResultEnumrator);
 }
