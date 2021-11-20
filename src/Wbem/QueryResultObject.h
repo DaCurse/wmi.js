@@ -2,6 +2,8 @@
 
 #include <WbemCli.h>
 
+#include "QueryResultObjectProperty.h"
+
 namespace WmiJS::Wbem
 {
   class QueryResultObject
@@ -15,5 +17,7 @@ namespace WmiJS::Wbem
     ~QueryResultObject();
 
     [[nodiscard]] bool operator==(const QueryResultObject &rhs) const;
+
+    [[nodiscard]] QueryResultObjectProperty getProperty(std::string propertyName);
   };
 }

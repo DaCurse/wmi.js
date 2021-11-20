@@ -3,15 +3,20 @@
         {
             "target_name": "wmijs",
             "sources": [
+                "src/WmiJS.cc",
                 "src/Wbem/Wbem.cc",
-                "src/Wbem/Locator.cc",
                 "src/Wbem/LocatorFactory.cc",
+                "src/Wbem/Locator.cc",                
                 "src/Wbem/Services.cc",
                 "src/Wbem/QueryResultEnumerator.cc",
                 "src/Wbem/QueryResultObject.cc",
-                "src/WmiJS.cc",
+                "src/Wbem/QueryResultObjectProperty.cc",
+                "src/Utils/StringUtils.cc"
             ],
-            "include_dirs": ["<!(node -p \"require('node-addon-api').include_dir\")"],
+            "include_dirs": [
+                "src",
+                "<!(node -p \"require('node-addon-api').include_dir\")"
+            ],
             "cflags!": ["-fno-exceptions"],
             "cflags_cc!": ["-fno-exceptions"],
             "conditions": [
